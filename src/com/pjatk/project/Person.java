@@ -21,7 +21,7 @@ public class Person {
     }
 
     public void reserveParkingSpace(ParkingSpace parkingSpace, double area) {
-        if (parkingSpace.getAvailableArea() > area && area > 0) {
+        if (parkingSpace.getParkingArea() > area && area > 0) {
             parkingSpace.reserveParkingSpace(area);
             System.out.println("You reserved " + area + " of customer's parking space. Available space left: " + parkingSpace.getParkingArea());
         } else {

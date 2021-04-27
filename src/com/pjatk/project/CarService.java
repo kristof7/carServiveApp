@@ -1,24 +1,50 @@
 package com.pjatk.project;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarService {
 
     private double carServiceArea;
-    List<Warehouse> warehouseList;
+    private double carServiceAvailableArea;
+    List<Warehouse> warehouseList = new ArrayList<>();
 
-    public CarService(double carServiceArea, List<Warehouse> warehouseList) {
+    public CarService(double carServiceArea) {
         this.carServiceArea = carServiceArea;
-        this.warehouseList = warehouseList;
+        this.carServiceAvailableArea = carServiceArea;
     }
 
     public void addWarehouse(Warehouse warehouse) {
-        if (warehouse.getArea() > 0 && carServiceArea > warehouse.getArea()) {
-            carServiceArea -= warehouse.getArea();
+        if (this.carServiceAvailableArea > warehouse.getArea()) {
+            setCarServiceAvailableArea(carServiceAvailableArea -= warehouse.getArea());
             warehouseList.add(warehouse);
         } else {
             System.out.println("Sorry,but there is no available space for this warehouse");
         }
     }
 
+
+    public double getCarServiceArea() {
+        return carServiceArea;
+    }
+
+    public void setCarServiceArea(double carServiceArea) {
+        this.carServiceArea = carServiceArea;
+    }
+
+    public double getCarServiceAvailableArea() {
+        return carServiceAvailableArea;
+    }
+
+    public void setCarServiceAvailableArea(double carServiceAvailableArea) {
+        this.carServiceAvailableArea = carServiceAvailableArea;
+    }
+
+    public List<Warehouse> getWarehouseList() {
+        return warehouseList;
+    }
+
+    public void setWarehouseList(List<Warehouse> warehouseList) {
+        this.warehouseList = warehouseList;
+    }
 }

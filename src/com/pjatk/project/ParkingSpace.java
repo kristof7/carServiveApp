@@ -8,16 +8,20 @@ public class ParkingSpace extends Warehouse {
     private static int count;
     private double parkingArea;
 
-    public ParkingSpace(Warehouse warehouse) {
+    public ParkingSpace(Warehouse warehouse, double parkingArea) {
         super(warehouse.getPercentageServiceArea(), warehouse.getArea());
+        if (parkingArea <= warehouse.getAvailableArea())
+        this.parkingArea = parkingArea;
+        else {
+            System.out.println("Sorry, but there is no available space to create this parking space");
+            this.parkingArea = warehouse.getAvailableArea();
+        }
         if (warehouse.getArea() > 0 && warehouse.getAvailableArea() >= parkingArea) {
-            this.parkingArea = parkingArea;
             warehouse.setAvailableArea(warehouse.getAvailableArea() - parkingArea);
         } else {
             parkingArea = 0;
         }
-        this.setParkingArea(warehouse.getAvailableArea());
-
+        super.setAvailableArea(warehouse.getAvailableArea() - parkingArea);
         count++;
         id = count;
     }

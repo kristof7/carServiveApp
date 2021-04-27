@@ -10,9 +10,13 @@ public class CustomerWarehouse extends Warehouse {
 
     public CustomerWarehouse(Warehouse warehouse, double warehouseArea) {
         super(warehouse.getPercentageServiceArea(), warehouse.getArea());
-
-        if (warehouse.getArea() > 0 && warehouse.getAvailableArea() >= warehouseArea) {
+        if (warehouseArea <= warehouse.getAvailableArea())
             this.warehouseArea = warehouseArea;
+        else {
+            System.out.println("Sorry, but there is no available space to create this warehouse");
+            this.warehouseArea = warehouse.getAvailableArea();
+        }
+        if (warehouse.getArea() > 0 && warehouse.getAvailableArea() >= warehouseArea) {
             warehouse.setAvailableArea(warehouse.getAvailableArea() - warehouseArea);
         } else {
             warehouseArea = 0;
