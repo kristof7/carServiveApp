@@ -14,7 +14,6 @@ public class Main {
         System.out.println(parkingSpace.getParkingArea());
 
 
-
         Person person = new Person();
 
         person.reserveCustomerWarehouseArea(customerWarehouse, 10);

@@ -7,7 +7,7 @@ public class Warehouse {
     private double percentageServiceArea;
     private double availableArea;
     private double area;
-    private List<Person> persons;
+    private List<Person> personsWithPermission;
     private Person payer;
 
     public Warehouse(double percentageServiceArea, double area) {
@@ -18,8 +18,8 @@ public class Warehouse {
             availableArea = 0;
         }
         this.area = area;
-        if (persons != null) {
-            this.payer = persons.get(0);
+        if (personsWithPermission != null) {
+            this.payer = personsWithPermission.get(0);
         } else {
             this.payer = null;
         }
@@ -27,7 +27,7 @@ public class Warehouse {
 
     public void addCustomerToWarehouse(Person person) {
         if (person != null)
-            this.persons.add(person);
+            this.personsWithPermission.add(person);
     }
 
     public double getPercentageServiceArea() {
@@ -54,12 +54,12 @@ public class Warehouse {
         this.availableArea = availableArea;
     }
 
-    public List<Person> getPersons() {
-        return persons;
+    public List<Person> getPersonsWithPermission() {
+        return personsWithPermission;
     }
 
-    public void setPersons(List<Person> persons) {
-        this.persons = persons;
+    public void setPersonsWithPermission(List<Person> personsWithPermission) {
+        this.personsWithPermission = personsWithPermission;
     }
 
     public Person getPayer() {

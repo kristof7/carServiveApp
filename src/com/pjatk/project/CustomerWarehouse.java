@@ -5,6 +5,7 @@ import java.util.Objects;
 public class CustomerWarehouse extends Warehouse {
 
     private int id;
+    private static int count;
     private double warehouseArea;
 
     public CustomerWarehouse(Warehouse warehouse, double warehouseArea) {
@@ -17,6 +18,8 @@ public class CustomerWarehouse extends Warehouse {
             warehouseArea = 0;
         }
         super.setAvailableArea(warehouse.getAvailableArea() - warehouseArea);
+        count++;
+        id = count;
     }
 
     public void reserveWarehouseArea(double area) {
@@ -26,6 +29,8 @@ public class CustomerWarehouse extends Warehouse {
             System.out.println("Wrong value, type number grater than 0!");
         }
     }
+
+    // -------- getters & setters ---------
 
     public int getId() {
         return id;
@@ -42,6 +47,8 @@ public class CustomerWarehouse extends Warehouse {
     public void setWarehouseArea(double warehouseArea) {
         this.warehouseArea = warehouseArea;
     }
+
+    // -------- equals & hascode ---------
 
     @Override
     public boolean equals(Object o) {
