@@ -36,7 +36,14 @@ public class Person {
         }
     }
 
-    public void insertItemToWarehouse() {}
+    public void insertItemToWarehouse(Warehouse warehouse) {
+        if (warehouse.getPersonsWithPermission().contains(this)) {
+            System.out.println("yes");
+        } else {
+            System.out.println("no");
+        }
+
+    }
 
 
     public void givePermission(Warehouse warehouse, Person person) {

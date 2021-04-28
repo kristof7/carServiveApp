@@ -1,15 +1,10 @@
 package com.pjatk.project;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 public class Main {
 
     public static void main(String[] args) {
-
-
-
 
         CarService carService = new CarService(2000);
         Warehouse warehouse1 = new Warehouse(30, 300);
@@ -64,10 +59,13 @@ public class Main {
 
         person2.reserveCustomerWarehouseArea(customerWarehouse, 10);
 
+        person2.insertItemToWarehouse(customerWarehouse);
+
 
         Person person3 = new Person("Nary", "Soleman", "127856789", "12-05-1991", date);
 
         person3.reserveCustomerWarehouseArea(customerWarehouse, 10);
+        person3.insertItemToWarehouse(customerWarehouse);
 
 
         System.out.println("customer warehouse with id "+ customerWarehouse.getId() +" have persons with permission: " + customerWarehouse.getPersonsWithPermission());
