@@ -1,5 +1,9 @@
 package com.pjatk.project;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -29,30 +33,44 @@ public class Main {
         carService.addWarehouse(warehouse9);
         carService.addWarehouse(warehouse10);
 
-        CustomerWarehouse customerWarehouse = new CustomerWarehouse(warehouse1, 150);
-        ParkingSpace parkingSpace = new ParkingSpace(warehouse1, 60);
+        CustomerWarehouse customerWarehouse = new CustomerWarehouse(warehouse1, 80);
+        CustomerWarehouse customerWarehouse2 = new CustomerWarehouse(warehouse1, 70);
+        ParkingSpace parkingSpace = new ParkingSpace(warehouse1, 30);
+        ParkingSpace parkingSpace2 = new ParkingSpace(warehouse1, 30);
         ServiceWarehouse serviceWarehouse = new ServiceWarehouse(warehouse1);
 
         System.out.println("customerWarehouse area: " + customerWarehouse.getWarehouseArea());
+        System.out.println("customerWarehouse id: " + customerWarehouse.getId());
+
         System.out.println("parking area: " + parkingSpace.getParkingArea());
         System.out.println("serviceWarehouse area: " + serviceWarehouse.getServiceWarehouseArea());
 
+        Date date = new Date();
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+//        System.out.println(formatter.format(date));
 
-        Person person = new Person();
+
+        Person tenant = new Person("Steve", "Norman", "123456339", "12-05-1997", date);
 
 
         System.out.println(customerWarehouse.getWarehouseArea());
-        person.reserveCustomerWarehouseArea(customerWarehouse, 10);
-        person.reserveParkingSpace(parkingSpace, 10);
 
-        Person person2 = new Person();
+        tenant.reserveCustomerWarehouseArea(customerWarehouse, 10);
+        tenant.reserveParkingSpace(parkingSpace, 10);
+
+        Person person2 = new Person("George", "Steveson", "123547789", "12-05-1992", date);
+
+        tenant.givePermission(customerWarehouse, person2);
 
         person2.reserveCustomerWarehouseArea(customerWarehouse, 10);
 
 
-        Person person3 = new Person();
+        Person person3 = new Person("Nary", "Soleman", "127856789", "12-05-1991", date);
 
         person3.reserveCustomerWarehouseArea(customerWarehouse, 10);
+
+
+        System.out.println("customer warehouse with id "+ customerWarehouse.getId() +" have persons with permission: " + customerWarehouse.getPersonsWithPermission());
 
     }
 }

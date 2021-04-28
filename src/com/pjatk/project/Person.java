@@ -10,6 +10,13 @@ public class Person {
     String dateOfBirth;
     Date warehouseRentDate;
 
+    public Person(String name, String surname, String pesel, String dateOfBirth, Date warehouseRentDate) {
+        this.name = name;
+        this.surname = surname;
+        this.pesel = pesel;
+        this.dateOfBirth = dateOfBirth;
+        this.warehouseRentDate = warehouseRentDate;
+    }
 
     public void reserveCustomerWarehouseArea(CustomerWarehouse customerWarehouse, double area) {
         if (customerWarehouse.getWarehouseArea() > area && area > 0) {
@@ -36,4 +43,15 @@ public class Person {
         warehouse.getPersonsWithPermission().add(person);
     }
 
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", pesel='" + pesel + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", warehouseRentDate=" + warehouseRentDate +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package com.pjatk.project;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Warehouse {
@@ -7,7 +8,7 @@ public class Warehouse {
     private double percentageServiceArea;
     private double availableArea;
     private double area;
-    private List<Person> personsWithPermission;
+    private List<Person> personsWithPermission = new ArrayList<>();
     private Person payer;
 
     public Warehouse(double percentageServiceArea, double area) {
@@ -18,7 +19,7 @@ public class Warehouse {
             availableArea = 0;
         }
         this.area = area;
-        if (personsWithPermission != null) {
+        if (personsWithPermission.size() != 0) {
             this.payer = personsWithPermission.get(0);
         } else {
             this.payer = null;
