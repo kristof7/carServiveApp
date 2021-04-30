@@ -1,9 +1,10 @@
 package com.pjatk.project;
 
-import java.util.List;
+import java.util.ArrayList;
+
 
 public class Owner {
 
-    List<CarService> carServiceList;
+    ArrayList<CarService> carServiceList = new ArrayList<>();
 
 }

@@ -8,32 +8,39 @@ public class Person {
     String surname;
     String pesel;
     String dateOfBirth;
-    Date warehouseRentDate;
 
-    public Person(String name, String surname, String pesel, String dateOfBirth, Date warehouseRentDate) {
+
+    public Person(String name, String surname, String pesel, String dateOfBirth) {
         this.name = name;
         this.surname = surname;
         this.pesel = pesel;
         this.dateOfBirth = dateOfBirth;
-        this.warehouseRentDate = warehouseRentDate;
     }
 
-    public void reserveCustomerWarehouseArea(CustomerWarehouse customerWarehouse, double area) {
+    public CustomerWarehouse reserveCustomerWarehouseArea(CustomerWarehouse customerWarehouse, double area) {
+        CustomerWarehouse newCustomerWarehouse = new CustomerWarehouse();
         if (customerWarehouse.getWarehouseArea() > area && area > 0) {
-            customerWarehouse.reserveWarehouseArea(area);
+            newCustomerWarehouse.setWarehouseArea(area);
+            newCustomerWarehouse.setAvailableArea(area);
+            customerWarehouse.setAvailableArea(customerWarehouse.getAvailableArea() - newCustomerWarehouse.getWarehouseArea());
             System.out.println("You reserved " + area + " of customer's Warehouse area. Available area left: " + customerWarehouse.getWarehouseArea());
         } else {
             System.out.println("Sorry, but there is no available area to reserve");
         }
+        return customerWarehouse;
     }
 
-    public void reserveParkingSpace(ParkingSpace parkingSpace, double area) {
+    public ParkingSpace reserveParkingSpace(ParkingSpace parkingSpace, double area) {
+        ParkingSpace newParkingSpace = new ParkingSpace();
         if (parkingSpace.getParkingArea() > area && area > 0) {
-            parkingSpace.reserveParkingSpace(area);
-            System.out.println("You reserved " + area + " of customer's parking space. Available space left: " + parkingSpace.getParkingArea());
+            newParkingSpace.setParkingArea(area);
+            newParkingSpace.setAvailableParkingArea(area);
+            parkingSpace.setAvailableParkingArea(parkingSpace.getAvailableParkingArea() - newParkingSpace.getParkingArea());
+            System.out.println("You reserved " + area + " of customer's parking space. Available space left: " + parkingSpace.getAvailableParkingArea());
         } else {
             System.out.println("Sorry, but there is no available area to reserve");
         }
+        return parkingSpace;
     }
 
     public void insertItemToWarehouse(Warehouse warehouse) {
@@ -51,6 +58,38 @@ public class Person {
     }
 
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -58,7 +97,6 @@ public class Person {
                 ", surname='" + surname + '\'' +
                 ", pesel='" + pesel + '\'' +
                 ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", warehouseRentDate=" + warehouseRentDate +
                 '}';
     }
 }

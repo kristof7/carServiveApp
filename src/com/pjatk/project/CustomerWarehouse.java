@@ -1,5 +1,7 @@
 package com.pjatk.project;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class CustomerWarehouse extends Warehouse {
@@ -7,9 +9,11 @@ public class CustomerWarehouse extends Warehouse {
     private int id;
     private static int count;
     private double warehouseArea;
+    private String customerWarehouseRentDate;
 
     public CustomerWarehouse(Warehouse warehouse, double warehouseArea) {
         super(warehouse.getPercentageServiceArea(), warehouse.getArea());
+        this.customerWarehouseRentDate = printActualDate();
         if (warehouseArea <= warehouse.getAvailableArea())
             this.warehouseArea = warehouseArea;
         else {
@@ -26,12 +30,14 @@ public class CustomerWarehouse extends Warehouse {
         id = count;
     }
 
-    public void reserveWarehouseArea(double area) {
-        if (area > 0) {
-            this.setWarehouseArea(warehouseArea - area);
-        } else {
-            System.out.println("Wrong value, type number grater than 0!");
-        }
+    public CustomerWarehouse() {
+
+    }
+
+    public String printActualDate() {
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+        Date date = new Date(System.currentTimeMillis());
+        return formatter.format(date);
     }
 
     // -------- getters & setters ---------

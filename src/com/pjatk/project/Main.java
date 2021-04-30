@@ -1,10 +1,16 @@
 package com.pjatk.project;
 
+import com.pjatk.project.exceptions.TooManyThingsException;
+import com.pjatk.project.vehicles.Motorcycle;
+import com.pjatk.project.vehicles.Vehicle;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Date;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         CarService carService = new CarService(2000);
         Warehouse warehouse1 = new Warehouse(30, 300);
@@ -28,7 +34,7 @@ public class Main {
         carService.addWarehouse(warehouse9);
         carService.addWarehouse(warehouse10);
 
-        CustomerWarehouse customerWarehouse = new CustomerWarehouse(warehouse1, 80);
+        CustomerWarehouse customerWarehouse = new CustomerWarehouse(warehouse1, 280);
         CustomerWarehouse customerWarehouse2 = new CustomerWarehouse(warehouse1, 70);
         ParkingSpace parkingSpace = new ParkingSpace(warehouse1, 30);
         ParkingSpace parkingSpace2 = new ParkingSpace(warehouse1, 30);
@@ -45,15 +51,35 @@ public class Main {
 //        System.out.println(formatter.format(date));
 
 
-        Person tenant = new Person("Steve", "Norman", "123456339", "12-05-1997", date);
+        Person tenant = new Person("Steve", "Norman", "123456339", "12-05-1997");
 
 
         System.out.println(customerWarehouse.getWarehouseArea());
 
         tenant.reserveCustomerWarehouseArea(customerWarehouse, 10);
-        tenant.reserveParkingSpace(parkingSpace, 10);
+        tenant.reserveCustomerWarehouseArea(customerWarehouse, 20);
+        tenant.reserveCustomerWarehouseArea(customerWarehouse, 10);
+        tenant.reserveCustomerWarehouseArea(customerWarehouse, 80);
+        ParkingSpace ps = tenant.reserveParkingSpace(parkingSpace, 10);
+        System.out.println("parking area: "+ps.getParkingArea());
 
-        Person person2 = new Person("George", "Steveson", "123547789", "12-05-1992", date);
+        Vehicle motorcycle = new Motorcycle(3, 900, "enginetype1", "Motorcycle", "Suzuki");
+        try {
+            ps.addVechicleToParkingSpace(motorcycle, ps);
+            System.out.println("parking area: "+ps.getParkingArea());
+            System.out.println(ps.getAvailableParkingArea());
+            System.out.println("vechicles: "+ps.getVechicles());
+        } catch (TooManyThingsException e) {
+            e.printStackTrace();
+        }
+//        tenant.reserveParkingSpace(parkingSpace, 10);
+
+        FileInputOutput fileInputOutput = new FileInputOutput();
+        fileInputOutput.parkingSpaceWrite(ps);
+        fileInputOutput.terminateWrite();
+        System.out.println("parking area main: " + parkingSpace.getParkingArea());
+
+        Person person2 = new Person("George", "Steveson", "123547789", "12-05-1992");
 
         tenant.givePermission(customerWarehouse, person2);
 
@@ -62,7 +88,7 @@ public class Main {
         person2.insertItemToWarehouse(customerWarehouse);
 
 
-        Person person3 = new Person("Nary", "Soleman", "127856789", "12-05-1991", date);
+        Person person3 = new Person("Nary", "Soleman", "127856789", "12-05-1991");
 
         person3.reserveCustomerWarehouseArea(customerWarehouse, 10);
         person3.insertItemToWarehouse(customerWarehouse);

@@ -8,7 +8,7 @@ public class Warehouse {
     private double percentageServiceArea;
     private double availableArea;
     private double area;
-    private List<Person> personsWithPermission = new ArrayList<>();
+    private ArrayList<Person> personsWithPermission = new ArrayList<>();
     private Person payer;
 
     public Warehouse(double percentageServiceArea, double area) {
@@ -26,8 +26,12 @@ public class Warehouse {
         }
     }
 
+    public Warehouse() {
+
+    }
+
     public void addCustomerToWarehouse(Person person) {
-        if (person != null)
+        if (personsWithPermission.size() != 0)
             this.personsWithPermission.add(person);
     }
 
@@ -43,10 +47,6 @@ public class Warehouse {
         return area;
     }
 
-    public void setArea(double area) {
-        this.area = area;
-    }
-
     public double getAvailableArea() {
         return availableArea;
     }
@@ -59,7 +59,7 @@ public class Warehouse {
         return personsWithPermission;
     }
 
-    public void setPersonsWithPermission(List<Person> personsWithPermission) {
+    public void setPersonsWithPermission(ArrayList<Person> personsWithPermission) {
         this.personsWithPermission = personsWithPermission;
     }
 

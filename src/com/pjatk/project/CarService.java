@@ -7,7 +7,7 @@ public class CarService {
 
     private double carServiceArea;
     private double carServiceAvailableArea;
-    List<Warehouse> warehouseList = new ArrayList<>();
+    ArrayList<Warehouse> warehouseList = new ArrayList<>();
 
     public CarService(double carServiceArea) {
         this.carServiceArea = carServiceArea;
@@ -44,7 +44,7 @@ public class CarService {
         return warehouseList;
     }
 
-    public void setWarehouseList(List<Warehouse> warehouseList) {
+    public void setWarehouseList(ArrayList<Warehouse> warehouseList) {
         this.warehouseList = warehouseList;
     }
 }

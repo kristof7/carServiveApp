@@ -1,5 +1,7 @@
 package com.pjatk.project;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class ServiceWarehouse extends Warehouse {
@@ -7,9 +9,11 @@ public class ServiceWarehouse extends Warehouse {
     private int id;
     private static int count;
     private double serviceWarehouseArea;
+    private String serviceWarehouseRentDate;
 
     public ServiceWarehouse(Warehouse warehouse) {
         super(warehouse.getPercentageServiceArea(), warehouse.getArea());
+        this.serviceWarehouseRentDate = printActualDate();
         if (warehouse.getArea() > 0) {
         this.serviceWarehouseArea = (warehouse.getArea() * warehouse.getPercentageServiceArea() / 100);
             warehouse.setAvailableArea(warehouse.getAvailableArea() - serviceWarehouseArea);
@@ -18,6 +22,13 @@ public class ServiceWarehouse extends Warehouse {
         }
         count++;
         id = count;
+    }
+
+
+    public String printActualDate() {
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+        Date date = new Date(System.currentTimeMillis());
+        return formatter.format(date);
     }
 
 
