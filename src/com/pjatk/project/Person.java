@@ -19,20 +19,20 @@ public class Person {
 
     public CustomerWarehouse reserveCustomerWarehouseArea(CustomerWarehouse customerWarehouse, double area) {
         CustomerWarehouse newCustomerWarehouse = new CustomerWarehouse();
-        if (customerWarehouse.getWarehouseArea() > area && area > 0) {
+        if (customerWarehouse.getWarehouseArea() > area && customerWarehouse.getAvailableCustomerWarehouseArea() - area > 0) {
             newCustomerWarehouse.setWarehouseArea(area);
             newCustomerWarehouse.setAvailableArea(area);
-            customerWarehouse.setAvailableArea(customerWarehouse.getAvailableArea() - newCustomerWarehouse.getWarehouseArea());
-            System.out.println("You reserved " + area + " of customer's Warehouse area. Available area left: " + customerWarehouse.getWarehouseArea());
+            customerWarehouse.setAvailableCustomerWarehouseArea(customerWarehouse.getAvailableCustomerWarehouseArea() - area);
+            System.out.println("You reserved " + area + " of customer's Warehouse area. Available area left: " + customerWarehouse.getAvailableCustomerWarehouseArea());
         } else {
             System.out.println("Sorry, but there is no available area to reserve");
         }
-        return customerWarehouse;
+        return newCustomerWarehouse;
     }
 
     public ParkingSpace reserveParkingSpace(ParkingSpace parkingSpace, double area) {
-        ParkingSpace newParkingSpace = new ParkingSpace();
-        if (parkingSpace.getParkingArea() > area && area > 0) {
+        ParkingSpace newParkingSpace = parkingSpace;
+        if (parkingSpace.getParkingArea() > area && parkingSpace.getAvailableParkingArea() - area > 0) {
             newParkingSpace.setParkingArea(area);
             newParkingSpace.setAvailableParkingArea(area);
             parkingSpace.setAvailableParkingArea(parkingSpace.getAvailableParkingArea() - newParkingSpace.getParkingArea());
@@ -40,7 +40,7 @@ public class Person {
         } else {
             System.out.println("Sorry, but there is no available area to reserve");
         }
-        return parkingSpace;
+        return newParkingSpace;
     }
 
     public void insertItemToWarehouse(Warehouse warehouse) {

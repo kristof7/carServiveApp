@@ -7,38 +7,63 @@ import com.pjatk.project.vehicles.Vehicle;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
         CarService carService = new CarService(2000);
-        Warehouse warehouse1 = new Warehouse(30, 300);
-        Warehouse warehouse2 = new Warehouse(20, 150);
-        Warehouse warehouse3 = new Warehouse(30, 100);
-        Warehouse warehouse4 = new Warehouse(50, 150);
+        Warehouse warehouse1 = new Warehouse(20, 700);
+        Warehouse warehouse2 = new Warehouse(20, 250);
+        Warehouse warehouse3 = new Warehouse(10, 200);
+        Warehouse warehouse4 = new Warehouse(50, 350);
         Warehouse warehouse5 = new Warehouse(40, 170);
-        Warehouse warehouse6 = new Warehouse(30, 200);
-        Warehouse warehouse7 = new Warehouse(30, 300);
-        Warehouse warehouse8 = new Warehouse(30, 100);
-        Warehouse warehouse9 = new Warehouse(30, 120);
-        Warehouse warehouse10 = new Warehouse(30, 160);
         carService.addWarehouse(warehouse1);
         carService.addWarehouse(warehouse2);
         carService.addWarehouse(warehouse3);
         carService.addWarehouse(warehouse4);
         carService.addWarehouse(warehouse5);
-        carService.addWarehouse(warehouse6);
-        carService.addWarehouse(warehouse7);
-        carService.addWarehouse(warehouse8);
-        carService.addWarehouse(warehouse9);
-        carService.addWarehouse(warehouse10);
 
-        CustomerWarehouse customerWarehouse = new CustomerWarehouse(warehouse1, 280);
-        CustomerWarehouse customerWarehouse2 = new CustomerWarehouse(warehouse1, 70);
+        CustomerWarehouse customerWarehouse = new CustomerWarehouse(warehouse1, 50);
+        CustomerWarehouse customerWarehouse2 = new CustomerWarehouse(warehouse1, 60);
+        CustomerWarehouse customerWarehouse3 = new CustomerWarehouse(warehouse1, 65);
+        CustomerWarehouse customerWarehouse4 = new CustomerWarehouse(warehouse1, 50);
+        CustomerWarehouse customerWarehouse5 = new CustomerWarehouse(warehouse1, 45);
+        CustomerWarehouse customerWarehouse6 = new CustomerWarehouse(warehouse1, 50);
+        CustomerWarehouse customerWarehouse7 = new CustomerWarehouse(warehouse1, 40);
+        CustomerWarehouse customerWarehouse8 = new CustomerWarehouse(warehouse1, 60);
+        CustomerWarehouse customerWarehouse9 = new CustomerWarehouse(warehouse1, 25);
+        CustomerWarehouse customerWarehouse0 = new CustomerWarehouse(warehouse1, 30);
         ParkingSpace parkingSpace = new ParkingSpace(warehouse1, 30);
         ParkingSpace parkingSpace2 = new ParkingSpace(warehouse1, 30);
         ServiceWarehouse serviceWarehouse = new ServiceWarehouse(warehouse1);
+
+
+
+
+//        Scanner sc = new Scanner(System.in);
+//
+//        System.out.println("Hello in car Service, what would you like to do?");
+//        System.out.println("1. Reserve warehouse");
+//        System.out.println("2. Reserve car space");
+//
+//        Integer choose = sc.nextInt();
+//
+//
+//        switch (choose) {
+//
+//            case 1:
+//
+//
+//                System.out.println("Choose warehouse spot:");
+//                System.out.println("1. warehouse id: " + customerWarehouse.getId() + ", area: " + customerWarehouse.getWarehouseArea() + " available space: " + customerWarehouse.getAvailableArea());
+//                System.out.println("2. warehouse id: " + customerWarehouse2.getId() + ", area: " + customerWarehouse2.getWarehouseArea() + " available space: " + customerWarehouse2.getAvailableArea());
+//
+//                break;
+//
+//
+//        }
 
         System.out.println("customerWarehouse area: " + customerWarehouse.getWarehouseArea());
         System.out.println("customerWarehouse id: " + customerWarehouse.getId());
@@ -46,9 +71,6 @@ public class Main {
         System.out.println("parking area: " + parkingSpace.getParkingArea());
         System.out.println("serviceWarehouse area: " + serviceWarehouse.getServiceWarehouseArea());
 
-        Date date = new Date();
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-//        System.out.println(formatter.format(date));
 
 
         Person tenant = new Person("Steve", "Norman", "123456339", "12-05-1997");
@@ -61,14 +83,14 @@ public class Main {
         tenant.reserveCustomerWarehouseArea(customerWarehouse, 10);
         tenant.reserveCustomerWarehouseArea(customerWarehouse, 80);
         ParkingSpace ps = tenant.reserveParkingSpace(parkingSpace, 10);
-        System.out.println("parking area: "+ps.getParkingArea());
+        System.out.println("parking area: " + ps.getParkingArea());
 
         Vehicle motorcycle = new Motorcycle(3, 900, "enginetype1", "Motorcycle", "Suzuki");
         try {
             ps.addVechicleToParkingSpace(motorcycle, ps);
-            System.out.println("parking area: "+ps.getParkingArea());
+            System.out.println("parking area: " + ps.getParkingArea());
             System.out.println(ps.getAvailableParkingArea());
-            System.out.println("vechicles: "+ps.getVechicles());
+            System.out.println("vechicles: " + ps.getVechicles());
         } catch (TooManyThingsException e) {
             e.printStackTrace();
         }
@@ -94,7 +116,7 @@ public class Main {
         person3.insertItemToWarehouse(customerWarehouse);
 
 
-        System.out.println("customer warehouse with id "+ customerWarehouse.getId() +" have persons with permission: " + customerWarehouse.getPersonsWithPermission());
+        System.out.println("customer warehouse with id " + customerWarehouse.getId() + " have persons with permission: " + customerWarehouse.getPersonsWithPermission());
 
     }
 }

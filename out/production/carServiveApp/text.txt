@@ -1,4 +1,0 @@
-Vehicles:
-[Person{name='George', surname='Steveson', pesel='123547789', dateOfBirth='12-05-1992', warehouseRentDate=Fri Apr 30 16:27:55 CEST 2021}]
-[Person{name='George', surname='Steveson', pesel='123547789', dateOfBirth='12-05-1992', warehouseRentDate=Fri Apr 30 16:27:55 CEST 2021}]
-[Person{name='George', surname='Steveson', pesel='123547789', dateOfBirth='12-05-1992', warehouseRentDate=Fri Apr 30 16:27:55 CEST 2021}]

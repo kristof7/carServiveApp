@@ -9,14 +9,16 @@ public class CustomerWarehouse extends Warehouse {
     private int id;
     private static int count;
     private double warehouseArea;
+    private double availableCustomerWarehouseArea;
     private String customerWarehouseRentDate;
 
     public CustomerWarehouse(Warehouse warehouse, double warehouseArea) {
         super(warehouse.getPercentageServiceArea(), warehouse.getArea());
         this.customerWarehouseRentDate = printActualDate();
-        if (warehouseArea <= warehouse.getAvailableArea())
+        if (warehouseArea <= warehouse.getAvailableArea()) {
             this.warehouseArea = warehouseArea;
-        else {
+            this.availableCustomerWarehouseArea = warehouseArea;
+        } else {
             System.out.println("Sorry, but there is no available space to create this warehouse");
             this.warehouseArea = warehouse.getAvailableArea();
         }
@@ -35,7 +37,7 @@ public class CustomerWarehouse extends Warehouse {
     }
 
     public String printActualDate() {
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());
         return formatter.format(date);
     }
@@ -57,6 +59,23 @@ public class CustomerWarehouse extends Warehouse {
     public void setWarehouseArea(double warehouseArea) {
         this.warehouseArea = warehouseArea;
     }
+
+    public double getAvailableCustomerWarehouseArea() {
+        return availableCustomerWarehouseArea;
+    }
+
+    public void setAvailableCustomerWarehouseArea(double availableCustomerWarehouseArea) {
+        this.availableCustomerWarehouseArea = availableCustomerWarehouseArea;
+    }
+
+    public String getCustomerWarehouseRentDate() {
+        return customerWarehouseRentDate;
+    }
+
+    public void setCustomerWarehouseRentDate(String customerWarehouseRentDate) {
+        this.customerWarehouseRentDate = customerWarehouseRentDate;
+    }
+
 
     // -------- equals & hascode ---------
 
